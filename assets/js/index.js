@@ -2,19 +2,23 @@
 const generateBtn = document.querySelector("#generate");
 
 const getPasswordLength = () => {
-  /*//prompt user to give a userInput
+  //prompt user to give a userInput
+  let userInput = prompt(
+    "How long would you like your password to be? Please enter a number between 8 and 128",
+    "10"
+  );
   // check if userInput is a number
-  if () {
-    //if true, check if userInput is within range 8-128
-    if () {
-    //if true but userInput is not within range, alert user  
-    } else {
-    }
-   //if userInput is not a number, alert the user 
+  // converts userInput into a number (or return NaN if not a number)
+  const passwordLength = parseInt(userInput);
+  if (!isNaN(passwordLength) && passwordLength >= 8 && passwordLength <= 128) {
+    //if type and range are both true, the number is returned for storage in variable
+    return passwordLength;
   } else {
-  }*/
-  //if true and true, the number is returned for storage in variable
-  return;
+    alert(
+      "You must enter a number between 8 and 128. Click OK to start again."
+    );
+    window.location.reload(true);
+  }
 };
 
 const getPasswordOptions = () => {
@@ -36,7 +40,7 @@ const getPasswordOptions = () => {
     //store the array in a variable
 
   }*/
-  return;
+  return ["abcde", "ABCDE", "12345"];
   //return the array to be stored in the variable
 };
 
@@ -49,14 +53,14 @@ const createPassword = () => {
   for () {
     
   }*/
-  return;
+  return "hfudhAF6jj";
   //returns the newly formed collection of characters
 };
 
 const shufflePassword = () => {
   //shuffle function
   //takes the collection of characters and shuffles it
-  return;
+  return "jj6hFfuAdh";
   //returns the shuffled characters as string
 };
 
@@ -66,13 +70,15 @@ const generatePassword = () => {
 
   //get the password length from the user
   //prompt to the user to enter the password length
+  //store userInput into variable
+
   //check if input is a number
   const passwordLength = getPasswordLength();
 
   //get the password options from the user
   const chosenOptions = getPasswordOptions();
 
-  //create the password
+  //create the random password
   const tempPassword = createPassword(passwordLength, chosenOptions);
   const randomPassword = shufflePassword(tempPassword);
   return randomPassword;
