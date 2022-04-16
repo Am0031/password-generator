@@ -4,20 +4,23 @@ const generateBtn = document.querySelector("#generate");
 const getPasswordLength = () => {
   //prompt user to give a userInput
   let userInput = prompt(
-    "How long would you like your password to be? Please enter a number between 8 and 128",
-    "10"
+    "How long would you like your password to be? \n\nPlease enter a number between 8 and 128.\n",
+    ""
   );
   // check if userInput is a number
-  // converts userInput into a number (or return NaN if not a number)
+
   const passwordLength = parseInt(userInput);
+  // converts userInput into a number (or return NaN if not a number)
   if (!isNaN(passwordLength) && passwordLength >= 8 && passwordLength <= 128) {
-    //if type and range are both true, the number is returned for storage in variable
     return passwordLength;
+    //if type and range are both true, the number is returned for storage in variable
   } else {
     alert(
-      "You must enter a number between 8 and 128. Click OK to start again."
+      "You must enter a number between 8 and 128. \n\nClick OK to start again."
     );
+    //if type or range are not true, it sends an alert box with message
     window.location.reload(true);
+    //click ok on alert box to reload the page and start again
   }
 };
 
