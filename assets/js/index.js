@@ -25,9 +25,14 @@ const getPasswordLength = () => {
 };
 
 const getPasswordOptions = () => {
-  /*//prompt the user with a question and get true/false response
+  //prompt the user with a question and get true/false response
+  const questions = ["question 1", "question 2", "question 3", "question 4"];
   //4 prompts - loop for 4 questions
-  if () {
+  for (let i = 0; i < questions.length; i += 1) {
+    let optionQuestion = confirm(questions[i]);
+  }
+
+  /*if () {
     //if true, then the string is stored in an array
     
   } else {
