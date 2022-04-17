@@ -91,11 +91,33 @@ const createPassword = (passwordLength, chosenOptions) => {
   //returns the newly formed collection of characters
 };
 
-const shufflePassword = () => {
+const shufflePassword = (tempPassword) => {
   //shuffle function
-  //takes the collection of characters and shuffles it
-  return "jj6hFfuAdh";
+  //takes each string in array and assigns it a new index
+  //found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+  let array = tempPassword;
+  let currentIndex = array.length,
+    randomIndex;
+  console.log(array);
+
+  // While there remain elements to shuffle:
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+  console.log(array);
+  let string = array.join("");
+  console.log(string);
+
   //returns the shuffled characters as string
+  return string;
 };
 
 // main function to generate the random password
