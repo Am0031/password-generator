@@ -51,7 +51,6 @@ const getPasswordOptions = () => {
       //if true, then the string is stored in an array
       choiceArray.push(characters[i]);
       //if false, nothing is done and the loop goes to the next index
-      console.log(choiceArray);
     }
   }
   //step 2: isValidOption part
@@ -75,10 +74,8 @@ const createPassword = (passwordLength, chosenOptions) => {
 
   for (let i = 0; i < chosenOptions.length; i += 1) {
     let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
-    console.log(chosenOptions[i].length);
-    console.log(randomNumber);
+
     draftPassword.push(chosenOptions[i][randomNumber]);
-    console.log(draftPassword);
   }
   //loop to extract 1 character from randomly selected string until password length is reached
   for (let i = chosenOptions.length; i < passwordLength; i += 1) {
@@ -86,10 +83,8 @@ const createPassword = (passwordLength, chosenOptions) => {
     let randomNumber = Math.floor(
       Math.random() * chosenOptions[randomArray].length
     );
-    console.log(chosenOptions[randomArray].length);
-    console.log(randomNumber);
+
     draftPassword.push(chosenOptions[randomArray][randomNumber]);
-    console.log(draftPassword);
   }
 
   return draftPassword;
@@ -116,12 +111,10 @@ const generatePassword = () => {
 
   //get the password options from the user
   const chosenOptions = getPasswordOptions();
-  console.log(chosenOptions);
-  console.log(passwordLength);
 
   //create the random password
   const tempPassword = createPassword(passwordLength, chosenOptions);
-  console.log(tempPassword);
+
   const randomPassword = shufflePassword(tempPassword);
   return randomPassword;
 };
