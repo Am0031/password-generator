@@ -98,25 +98,22 @@ const shufflePassword = (tempPassword) => {
   let array = tempPassword;
   let currentIndex = array.length,
     randomIndex;
-  console.log(array);
 
   // While there remain elements to shuffle:
   while (currentIndex != 0) {
-    // Pick a remaining element.
+    // Pick a remaining element:
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    // And swap it with the current element.
+    // And swap it with the current element:
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex],
       array[currentIndex],
     ];
   }
-  console.log(array);
-  let string = array.join("");
-  console.log(string);
 
   //returns the shuffled characters as string
+  let string = array.join("");
   return string;
 };
 
