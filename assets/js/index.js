@@ -69,15 +69,21 @@ const getPasswordOptions = () => {
   }
 };
 
-const createPassword = () => {
-  /*//loop to extract 1 character from each string
-  for () {
-    
+const createPassword = (passwordLength, chosenOptions) => {
+  //loop to extract 1 character from each string
+  let randomPassword = [];
+
+  for (let i = 0; i < chosenOptions.length; i += 1) {
+    let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
+    console.log(chosenOptions[i].length);
+    console.log(randomNumber);
+    randomPassword.push(chosenOptions[i][randomNumber]);
+    console.log(randomPassword);
   }
   //loop to extract 1 character from randomly selected string until passwprd length is reached
-  for () {
-    
-  }*/
+  //for () {
+
+  //}
   return "hfudhAF6jj";
   //returns the newly formed collection of characters
 };
