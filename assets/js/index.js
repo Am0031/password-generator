@@ -26,7 +26,7 @@ const getPasswordLength = () => {
 
 const getPasswordOptions = () => {
   //step 1: getUserOption part
-  //prompt the user with a question and get true/false response
+  //set up variables for questions and strings of characters
   const question = [
     "Would you like to use lowercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
     "Would you like to use uppercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
@@ -42,6 +42,7 @@ const getPasswordOptions = () => {
   //set up variable for array of strings of characters - start with empty array
   let choiceArray = [];
 
+  //prompt the user with a question and get true/false response
   //4 prompts - loop for 4 questions
   for (let i = 0; i < question.length; i += 1) {
     const getUserOption = confirm(question[i]);
