@@ -26,30 +26,44 @@ const getPasswordLength = () => {
 
 const getPasswordOptions = () => {
   //prompt the user with a question and get true/false response
-  const questions = ["question 1", "question 2", "question 3", "question 4"];
-  //4 prompts - loop for 4 questions
-  for (let i = 0; i < questions.length; i += 1) {
-    let optionQuestion = confirm(questions[i]);
-  }
+  const question = [
+    "Would you like to use lowercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
+    "Would you like to use uppercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
+    "Would you like to use numbers in your password? \nClick 'OK' for yes and 'Cancel' for no.",
+    "Would you like to use special characters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
+  ];
+  const characters = [
+    "abcdefghijklmnopqrstuvwxyz",
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "0123456789",
+    " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
+  ];
+  //set up variable for array of strings of characters - start with empty array
+  let chosenOptions = [];
 
-  /*if () {
-    //if true, then the string is stored in an array
-    
-  } else {
-    //if false, nothing is done and the loop goes to the next index
+  //4 prompts - loop for 4 questions
+  for (let i = 0; i < question.length; i += 1) {
+    const getUserOption = confirm(question[i]);
+
+    if (getUserOption) {
+      //if true, then the string is stored in an array
+      chosenOptions.push(characters[i]);
+      //if false, nothing is done and the loop goes to the next index
+    }
   }
 
   //check the options match the acceptance criteria
-  //check if array.length = 0
-  if (){
-    //if array.length = 0, then alert the user
+  //check if array.length = 0, then alert the user
+  if ((chosenOptions.length = 0)) {
+    alert(
+      "You must choose at least none type of characters to include in your password. \n\nClick OK to start again."
+    );
+    //click ok on alert box to reload the page and start again
+    window.location.reload(true);
+  } else {
+    //if array.length >=1, then store the array in a variable
+    return chosenOptions;
   }
-  else{
-    //store the array in a variable
-
-  }*/
-  return ["abcde", "ABCDE", "12345"];
-  //return the array to be stored in the variable
 };
 
 const createPassword = () => {
