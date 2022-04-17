@@ -141,7 +141,7 @@ const generatePassword = () => {
 
   const randomPassword = shufflePassword(tempPassword);
 
-  //return the created password to the writePassword function
+  //return the created password
   return randomPassword;
 };
 
