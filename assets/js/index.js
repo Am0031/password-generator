@@ -3,6 +3,9 @@ const generateBtn = document.querySelector("#generate");
 
 const getPasswordLength = () => {
   //prompt user to give a userInput
+  //option: clear old password in text area before generating a second one - reset doesn't work - what else??
+
+  //declare variable to receive user input
   let userInput = prompt(
     "How long would you like your password to be? \n\nPlease enter a number between 8 and 128.\n",
     ""
@@ -95,10 +98,10 @@ const createPassword = (passwordLength, chosenOptions) => {
 
 const shufflePassword = (tempPassword) => {
   //shuffle function
-  //takes each string in array and assigns it a new index
+  //takes each string in array and assigns it a new random index
   //found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-  let array = tempPassword;
-  let currentIndex = array.length,
+  let tempArray = tempPassword;
+  let currentIndex = tempArray.length,
     randomIndex;
 
   // While there remain elements to shuffle:
@@ -108,15 +111,15 @@ const shufflePassword = (tempPassword) => {
     currentIndex--;
 
     // And swap it with the current element:
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
+    [tempArray[currentIndex], tempArray[randomIndex]] = [
+      tempArray[randomIndex],
+      tempArray[currentIndex],
     ];
   }
 
   //returns the shuffled characters as string
-  let string = array.join("");
-  return string;
+  let tempString = tempArray.join("");
+  return tempString;
 };
 
 // main function to generate the random password
