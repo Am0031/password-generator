@@ -39,7 +39,7 @@ const getPasswordOptions = () => {
     " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
   ];
   //set up variable for array of strings of characters - start with empty array
-  let chosenOptions = [];
+  let choiceArray = [];
 
   //4 prompts - loop for 4 questions
   for (let i = 0; i < question.length; i += 1) {
@@ -47,14 +47,19 @@ const getPasswordOptions = () => {
 
     if (getUserOption) {
       //if true, then the string is stored in an array
-      chosenOptions.push(characters[i]);
+      choiceArray.push(characters[i]);
       //if false, nothing is done and the loop goes to the next index
+      console.log(choiceArray);
     }
   }
+  return choiceArray;
+};
 
+const isValidOptions = (chosenOptions) => {
   //check the options match the acceptance criteria
   //check if array.length = 0, then alert the user
-  if ((chosenOptions.length = 0)) {
+  let length = chosenOptions.length;
+  if ((length = 0)) {
     alert(
       "You must choose at least none type of characters to include in your password. \n\nClick OK to start again."
     );
@@ -99,9 +104,13 @@ const generatePassword = () => {
 
   //get the password options from the user
   const chosenOptions = getPasswordOptions();
+  console.log(chosenOptions);
+  console.log(chosenOptions.length);
+  const validOptions = isValidOptions(chosenOptions);
+  console.log(validOptions);
 
   //create the random password
-  const tempPassword = createPassword(passwordLength, chosenOptions);
+  const tempPassword = createPassword(passwordLength, validOptions);
   const randomPassword = shufflePassword(tempPassword);
   return randomPassword;
 };
