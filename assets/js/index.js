@@ -58,10 +58,10 @@ const getPasswordOptions = () => {
 const isValidOptions = (chosenOptions) => {
   //check the options match the acceptance criteria
   //check if array.length = 0, then alert the user
-  let length = chosenOptions.length;
-  if ((length = 0)) {
+
+  if (chosenOptions.length == 0) {
     alert(
-      "You must choose at least none type of characters to include in your password. \n\nClick OK to start again."
+      "You must choose at least one type of characters to include in your password. \n\nClick OK to start again."
     );
     //click ok on alert box to reload the page and start again
     window.location.reload(true);
