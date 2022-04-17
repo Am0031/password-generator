@@ -20,6 +20,7 @@ const getPasswordLength = () => {
     );
     //if type or range are not true, it sends an alert box with message
     window.location.reload(true);
+    document.getElementById("password").reset();
     //click ok on alert box to reload the page and start again
   }
 };
@@ -62,6 +63,7 @@ const getPasswordOptions = () => {
     );
     //click ok on alert box to reload the page and start again
     window.location.reload(true);
+    document.getElementById("password").reset();
   } else {
     //if array.length >=1, then return the array to be stored in a variable
     return choiceArray;
@@ -125,7 +127,7 @@ const generatePassword = () => {
   //prompt to the user to enter the password length
   //store userInput into variable
 
-  //check if input is a number
+  //check if input is a number within range
   const passwordLength = getPasswordLength();
 
   //get the password options from the user
@@ -135,6 +137,8 @@ const generatePassword = () => {
   const tempPassword = createPassword(passwordLength, chosenOptions);
 
   const randomPassword = shufflePassword(tempPassword);
+
+  //return the created password to the writePassword function
   return randomPassword;
 };
 
