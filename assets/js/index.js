@@ -25,6 +25,7 @@ const getPasswordLength = () => {
 };
 
 const getPasswordOptions = () => {
+  //step 1: getUserOption part
   //prompt the user with a question and get true/false response
   const question = [
     "Would you like to use lowercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
@@ -52,22 +53,18 @@ const getPasswordOptions = () => {
       console.log(choiceArray);
     }
   }
-  return choiceArray;
-};
-
-const isValidOptions = (chosenOptions) => {
-  //check the options match the acceptance criteria
-  //check if array.length = 0, then alert the user
-
-  if (chosenOptions.length == 0) {
+  //step 2: isValidOption part
+  //check the options match the acceptance criteria => at least 1 type of characters selected
+  //if array.length = 0, then alert the user
+  if (choiceArray.length == 0) {
     alert(
       "You must choose at least one type of characters to include in your password. \n\nClick OK to start again."
     );
     //click ok on alert box to reload the page and start again
     window.location.reload(true);
   } else {
-    //if array.length >=1, then store the array in a variable
-    return chosenOptions;
+    //if array.length >=1, then return the array to be stored in a variable
+    return choiceArray;
   }
 };
 
@@ -105,12 +102,10 @@ const generatePassword = () => {
   //get the password options from the user
   const chosenOptions = getPasswordOptions();
   console.log(chosenOptions);
-  console.log(chosenOptions.length);
-  const validOptions = isValidOptions(chosenOptions);
-  console.log(validOptions);
+  console.log(passwordLength);
 
   //create the random password
-  const tempPassword = createPassword(passwordLength, validOptions);
+  const tempPassword = createPassword(passwordLength, chosenOptions);
   const randomPassword = shufflePassword(tempPassword);
   return randomPassword;
 };
