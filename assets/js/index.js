@@ -76,7 +76,7 @@ const getPasswordOptions = () => {
   }
 };
 
-//function - create a temporary password based on user inputs
+//function createPassword 1/2 - create a temporary password based on user inputs
 const createPassword = (passwordLength, chosenOptions) => {
   //loop to extract 1 character from a string each time - const -> only pushing in it, not modifying
   const draftPassword = [];
@@ -100,7 +100,7 @@ const createPassword = (passwordLength, chosenOptions) => {
   return draftPassword;
 };
 
-//function - shuffle the temporary password and convert it to a string
+//function createPassword 2/2 - shuffle the temporary password and convert it to a string
 const shufflePassword = (tempPassword) => {
   //takes each string in array and assigns it a new random index
   //found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
