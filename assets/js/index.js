@@ -1,6 +1,7 @@
 // Assignment Code
 const generateBtn = document.querySelector("#generate");
 
+//function - get the password length from the user
 const getPasswordLength = () => {
   //prompt user to give a userInput
   //option: clear old password in text area before generating a second one - reset doesn't work - what else??
@@ -11,8 +12,8 @@ const getPasswordLength = () => {
     ""
   );
   // check if userInput is a number
-
   const passwordLength = parseInt(userInput);
+
   // converts userInput into a number (or return NaN if not a number)
   if (!isNaN(passwordLength) && passwordLength >= 8 && passwordLength <= 128) {
     //if type and range are both true, the number is returned for storage in variable
@@ -29,6 +30,7 @@ const getPasswordLength = () => {
   }
 };
 
+//function - get the user preferences on which characters to include in password
 const getPasswordOptions = () => {
   //step 1: getUserOption part
   //declare variables for questions and strings of characters
@@ -44,13 +46,13 @@ const getPasswordOptions = () => {
     "0123456789",
     " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
   ];
-  //declare variable for array of strings of characters - start with empty array - const -> only pushing in it, not modifying
+  //declare variable for result array of strings of characters - start with empty array - const -> only pushing in it, not modifying
   const choiceArray = [];
 
   //prompt the user with a question and get true/false response
   //4 prompts - loop for 4 questions
   for (let i = 0; i < question.length; i += 1) {
-    const getUserOption = confirm(question[i]);
+    const getUserOption = confirm(question[i]); //const -> used only in this loop, not modified in the if statement
 
     if (getUserOption) {
       //if true, then the string is stored in an array
@@ -74,13 +76,14 @@ const getPasswordOptions = () => {
   }
 };
 
+//function - create a temporary password based on user inputs
 const createPassword = (passwordLength, chosenOptions) => {
   //loop to extract 1 character from a string each time - const -> only pushing in it, not modifying
   const draftPassword = [];
-  //for all loops - to reach password length
+  //for loops until reaching password length
   for (let i = 0; i < passwordLength; i += 1) {
     //declare variable for the array index - const -> only used inside the for loop
-    //with ternary operator, combining both conditions : ensure at least 1 from each array first, then randomly afterwards
+    //with ternary operator, combining both conditions : ensure at least 1 character from each string in array first, then from a randomly selected string afterwards
     const chosenArray =
       i < chosenOptions.length
         ? i
@@ -97,10 +100,10 @@ const createPassword = (passwordLength, chosenOptions) => {
   return draftPassword;
 };
 
-//shuffle function
-//takes each string in array and assigns it a new random index
-//found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+//function - shuffle the temporary password and convert it to a string
 const shufflePassword = (tempPassword) => {
+  //takes each string in array and assigns it a new random index
+  //found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   let tempArray = tempPassword;
   let currentIndex = tempArray.length,
     randomIndex;
@@ -117,9 +120,12 @@ const shufflePassword = (tempPassword) => {
       tempArray[currentIndex],
     ];
   }
-  //declare variable for changing the array into a string - const -> only used here, never modified
+  //end of shuffled function
+
+  //takes the shuffled array above and converts it into a string with no gap between each character
+  //declare variable to receive the string - const -> only used here, never modified
   const tempString = tempArray.join("");
-  //returns the shuffled characters as string
+  //returns the string
   return tempString;
 };
 
@@ -135,7 +141,6 @@ const generatePassword = () => {
 
   //create the random password
   const tempPassword = createPassword(passwordLength, chosenOptions);
-
   const randomPassword = shufflePassword(tempPassword);
 
   //return the created password
