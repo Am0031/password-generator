@@ -77,21 +77,36 @@ const createPassword = (passwordLength, chosenOptions) => {
   //loop to extract 1 character from each string
   let draftPassword = [];
 
-  for (let i = 0; i < chosenOptions.length; i += 1) {
-    let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
+  // for (let i = 0; i < chosenOptions.length; i += 1) {
+  //   let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
 
-    draftPassword.push(chosenOptions[i][randomNumber]);
+  //   draftPassword.push(chosenOptions[i][randomNumber]);
+  // }
+  // //loop to extract 1 character from randomly selected string until password length is reached
+  // for (let i = chosenOptions.length; i < passwordLength; i += 1) {
+  //   let randomArray = Math.floor(Math.random() * chosenOptions.length);
+  //   let randomNumber = Math.floor(
+  //     Math.random() * chosenOptions[randomArray].length
+  //   );
+
+  //   draftPassword.push(chosenOptions[randomArray][randomNumber]);
+  // }
+  for (let i = 0; i < passwordLength; i += 1) {
+    if (i < chosenOptions.length) {
+      let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
+
+      draftPassword.push(chosenOptions[i][randomNumber]);
+    } else {
+      let randomArray = Math.floor(Math.random() * chosenOptions.length);
+      let randomNumber = Math.floor(
+        Math.random() * chosenOptions[randomArray].length
+      );
+
+      draftPassword.push(chosenOptions[randomArray][randomNumber]);
+    }
   }
-  //loop to extract 1 character from randomly selected string until password length is reached
-  for (let i = chosenOptions.length; i < passwordLength; i += 1) {
-    let randomArray = Math.floor(Math.random() * chosenOptions.length);
-    let randomNumber = Math.floor(
-      Math.random() * chosenOptions[randomArray].length
-    );
 
-    draftPassword.push(chosenOptions[randomArray][randomNumber]);
-  }
-
+  console.log(draftPassword);
   return draftPassword;
   //returns the newly formed collection of characters
 };
