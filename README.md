@@ -23,6 +23,48 @@ Link to the Github Repository: [https://github.com/Am0031/password-generator](ht
 
 ## Screenshots of the live page
 
+<details>
+  <summary>Live page</summary>
+
+![Password generator - deployed page](./assets/images/screenshot-deployedpage.png)
+
+</details>
+
+<details>
+  <summary>Prompt for password length</summary>
+
+![Prompt for password length](./assets/images/screenshot-plengthprompt.png)
+
+</details>
+
+<details>
+  <summary>Alert box for wrong input on password length</summary>
+
+![Alert for wrong input for passowrd length](./assets/images/screenshot-alertplength.png)
+
+</details>
+
+<details>
+  <summary>Prompt for character options</summary>
+
+![Prompt for character options](./assets/images/screenshot-optionprompt.png)
+
+</details>
+
+<details>
+  <summary>Alert box for wrong input on character options</summary>
+
+![Alert for wrong character options](./assets/images/screenshot-alertoption.png)
+
+</details>
+
+<details>
+  <summary>Password display in text area</summary>
+
+![Password display on page](./assets/images/screenshot-passwordtextarea.png)
+
+</details>
+
 ## Technologies
 
 HTML and CSS structures were already provided. The focus here was on developing the Javascript aspect of the password generator.
@@ -46,14 +88,14 @@ The first step in developing the password generator was to lay down the logical 
     <details>
     <summary>function getUserOptions</summary>
 
-  ![Logic for getPasswordLength function](./assets/images/logic-options-section2.png)
+  ![Logic for getPasswordOptions function](./assets/images/logic-options-section2.png)
 
     </details>
 
     <details>
     <summary>function createPassword</summary>
 
-  ![Logic for getPasswordLength function](./assets/images/logic-create-section3.png)
+  ![Logic for createPassword function](./assets/images/logic-create-section3.png)
 
     </details>
 
@@ -66,6 +108,8 @@ When tracing the logic of the functions, it was thought best that:
   - A second step where the code continues to select random characters in a randomly selected string, until it reaches the desired password length
   - A third step where the obtained collection of characters is shuffled to ensure their distribution is sufficiently random
 
+The complete logic diagram can be found as a pdf file in the **assets** folder in the project's [github repository](https://github.com/Am0031/password-generator/tree/dev).
+
 This provided the foundation for the code structure and supported writing the pseudo-code and declaring the main functions.
 
 <details>
@@ -75,7 +119,7 @@ This provided the foundation for the code structure and supported writing the ps
 
 </details>
 
-### Function structure
+### Functions - Code structure
 
 When developing the functions, the focus was on:
 
@@ -86,21 +130,52 @@ When developing the functions, the focus was on:
   - for loops (for repeated actions)
   - if/else statements (for conditional actions)
   - math.floor/math.random (for the generation of random numbers)
+  - push function (for pushing item into array)
   - join function (for conversion to string)
   - shuffle function (for random order of the characters) _(the code for this function was found [here](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array))_
+
+See below screenshots of the code for each function _(with explanatory comments in code)_
+
+<details>
+  <summary>Code for Function getPasswordLength</summary>
+
+![getPasswordLength](./assets/images/screenshot-getPasswordLength-function.png)
+
+</details>
+
+<details>
+  <summary>Code for Function getPasswordOptions</summary>
+
+![getPasswordLength](./assets/images/screenshot-getPasswordOptions-function.png)
+
+</details>
+
+<details>
+  <summary>Code for Function createPassword</summary>
+
+![getPasswordLength](./assets/images/screenshot-createPassword-functionP1.png)
+![getPasswordLength](./assets/images/screenshot-createPassword-functionP2.png)
+
+</details>
 
 ## Refactoring the code for better readability
 
 After the code was built and functional, it was important to review it for possible adjustments and improvements.
 The following aspects were worked on at this stage:
 
-- Review of let and const allocation for function variables, where a few variables previously declared as let were adjusted to const.
-  This [article](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/) provides a thorough explanations of the different uses of var, let and const.
+### Let and Const variables
 
-- Review for optimisation of the code, where loops and if/else statements can be modified for a cleaner syntax.
-  For that purpose, the createPassword function was optimised with the use of a ternary operator. This [MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is a great starting point to get some information on how a ternary operator works.
+Review of let and const allocation for function variables, where a few variables previously declared as let were adjusted to const.
 
-  Replacing the if/else statement by the ternary operator allowed to restructure the code so that all three steps in this function are now all contained at the same level in the for loop. See below the snippet of the code _(without the comment lines)_ :
+This [article](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/) provides a thorough explanations of the different uses of var, let and const.
+
+### Ternary operator
+
+Review for optimisation of the code, where loops and if/else statements can be modified for a cleaner syntax.
+
+For that purpose, the createPassword function was optimised with the use of a ternary operator.
+
+Replacing the if/else statement by the ternary operator allowed to restructure this section's code so that all three steps in this function are now all contained at the same level in the for loop and there is no unnecessary repetition of code. See below the snippet of the code _(without the comment lines for a cleaner view)_ :
 
 ```javascript
 const createPassword = (passwordLength, chosenOptions) => {
@@ -120,7 +195,9 @@ const createPassword = (passwordLength, chosenOptions) => {
 };
 ```
 
+This [MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is a great starting point to get some information on how a ternary operator works.
+
 ## Functionalities and Limitations
 
 While this page creates a password, it does not offer other features. This is due to the fact that the provided `HTML` and `CSS` were purposefully left untouched.
-However, other complementing features to this page could be: adding a "copy to clipboard" button when the password is generated, adding a redirection button (if page is part of a larger project).
+However, other complementing features to this page could be for example : adding a "copy to clipboard" button when the password is generated, adding a redirection button (if page is part of a larger project).

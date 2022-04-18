@@ -4,8 +4,6 @@ const generateBtn = document.querySelector("#generate");
 //function - get the password length from the user
 const getPasswordLength = () => {
   //prompt user to give a userInput
-  //option: clear old password in text area before generating a second one - reset doesn't work - what else??
-
   //declare variable to receive user input - const -> not modified further down
   const userInput = prompt(
     "How long would you like your password to be? \n\nPlease enter a number between 8 and 128.\n",
