@@ -20,6 +20,7 @@ For this project, the `HTML` and `CSS` structure were developed by another party
 Link to the deployed URL: [https://am0031.github.io/password-generator/](https://am0031.github.io/password-generator/)
 
 Link to the Github Repository: [https://github.com/Am0031/password-generator](https://github.com/Am0031/password-generator)
+Link to Github's pull request: [project ready for marking](https://github.com/Am0031/password-generator/pull/1)
 
 ## Screenshots of the live page
 
@@ -108,7 +109,7 @@ When tracing the logic of the functions, it was thought best that:
   - A second step where the code continues to select random characters in a randomly selected string, until it reaches the desired password length
   - A third step where the obtained collection of characters is shuffled to ensure their distribution is sufficiently random
 
-The complete logic diagram can be found as a pdf file in the **assets** folder in the project's [github repository](https://github.com/Am0031/password-generator/tree/dev).
+The complete logic diagram can be found as a [pdf file](https://github.com/Am0031/password-generator/blob/dev/assets/password-generator-logic.pdf) in the **assets** folder in the project's [github repository](https://github.com/Am0031/password-generator/tree/dev).
 
 This provided the foundation for the code structure and supported writing the pseudo-code and declaring the main functions.
 
