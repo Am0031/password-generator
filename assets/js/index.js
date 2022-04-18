@@ -15,22 +15,23 @@ const getPasswordLength = () => {
   const passwordLength = parseInt(userInput);
   // converts userInput into a number (or return NaN if not a number)
   if (!isNaN(passwordLength) && passwordLength >= 8 && passwordLength <= 128) {
-    return passwordLength;
     //if type and range are both true, the number is returned for storage in variable
-  } else {
+    return passwordLength;
+  }
+  //if type or range are not true, it sends an alert box with message
+  else {
     alert(
       "You must enter a number between 8 and 128. \n\nClick OK to start again."
     );
-    //if type or range are not true, it sends an alert box with message
+    //click ok on alert box to reload the page and start again
     window.location.reload(true);
     document.getElementById("password").reset();
-    //click ok on alert box to reload the page and start again
   }
 };
 
 const getPasswordOptions = () => {
   //step 1: getUserOption part
-  //set up variables for questions and strings of characters
+  //declare variables for questions and strings of characters
   const question = [
     "Would you like to use lowercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
     "Would you like to use uppercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
@@ -74,49 +75,31 @@ const getPasswordOptions = () => {
 };
 
 const createPassword = (passwordLength, chosenOptions) => {
-  //loop to extract 1 character from each string
+  //loop to extract 1 character from a string each time
   let draftPassword = [];
-
-  // for (let i = 0; i < chosenOptions.length; i += 1) {
-  //   let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
-
-  //   draftPassword.push(chosenOptions[i][randomNumber]);
-  // }
-  // //loop to extract 1 character from randomly selected string until password length is reached
-  // for (let i = chosenOptions.length; i < passwordLength; i += 1) {
-  //   let randomArray = Math.floor(Math.random() * chosenOptions.length);
-  //   let randomNumber = Math.floor(
-  //     Math.random() * chosenOptions[randomArray].length
-  //   );
-
-  //   draftPassword.push(chosenOptions[randomArray][randomNumber]);
-  // }
+  //for all loops - to reach password length
   for (let i = 0; i < passwordLength; i += 1) {
-    let chosenArray;
-    if (i < chosenOptions.length) {
-      chosenArray = i;
-      console.log(chosenArray);
-    } else {
-      chosenArray = Math.floor(Math.random() * chosenOptions.length);
-      console.log(chosenArray);
-    }
-
-    let randomNumber = Math.floor(
+    //declare variable for the array index
+    //with ternary operator, combining both selections: ensure at least 1 from each array first, then randomly afterwards
+    const chosenArray =
+      i < chosenOptions.length
+        ? i
+        : Math.floor(Math.random() * chosenOptions.length);
+    //choosing random character in string
+    const randomNumber = Math.floor(
       Math.random() * chosenOptions[chosenArray].length
     );
+    //pushing character in variable
     draftPassword.push(chosenOptions[chosenArray][randomNumber]);
-    console.log(draftPassword);
   }
-
-  console.log(draftPassword);
-  return draftPassword;
   //returns the newly formed collection of characters
+  return draftPassword;
 };
 
+//shuffle function
+//takes each string in array and assigns it a new random index
+//found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 const shufflePassword = (tempPassword) => {
-  //shuffle function
-  //takes each string in array and assigns it a new random index
-  //found at: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
   let tempArray = tempPassword;
   let currentIndex = tempArray.length,
     randomIndex;
@@ -144,10 +127,6 @@ const generatePassword = () => {
   //All the logic for the generatePassword function is here
 
   //get the password length from the user
-  //prompt to the user to enter the password length
-  //store userInput into variable
-
-  //check if input is a number within range
   const passwordLength = getPasswordLength();
 
   //get the password options from the user
