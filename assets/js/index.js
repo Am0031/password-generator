@@ -92,18 +92,20 @@ const createPassword = (passwordLength, chosenOptions) => {
   //   draftPassword.push(chosenOptions[randomArray][randomNumber]);
   // }
   for (let i = 0; i < passwordLength; i += 1) {
+    let chosenArray;
     if (i < chosenOptions.length) {
-      let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
-
-      draftPassword.push(chosenOptions[i][randomNumber]);
+      chosenArray = i;
+      console.log(chosenArray);
     } else {
-      let randomArray = Math.floor(Math.random() * chosenOptions.length);
-      let randomNumber = Math.floor(
-        Math.random() * chosenOptions[randomArray].length
-      );
-
-      draftPassword.push(chosenOptions[randomArray][randomNumber]);
+      chosenArray = Math.floor(Math.random() * chosenOptions.length);
+      console.log(chosenArray);
     }
+
+    let randomNumber = Math.floor(
+      Math.random() * chosenOptions[chosenArray].length
+    );
+    draftPassword.push(chosenOptions[chosenArray][randomNumber]);
+    console.log(draftPassword);
   }
 
   console.log(draftPassword);
