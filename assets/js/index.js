@@ -5,8 +5,8 @@ const getPasswordLength = () => {
   //prompt user to give a userInput
   //option: clear old password in text area before generating a second one - reset doesn't work - what else??
 
-  //declare variable to receive user input
-  let userInput = prompt(
+  //declare variable to receive user input - const -> not modified further down
+  const userInput = prompt(
     "How long would you like your password to be? \n\nPlease enter a number between 8 and 128.\n",
     ""
   );
@@ -44,8 +44,8 @@ const getPasswordOptions = () => {
     "0123456789",
     " !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
   ];
-  //set up variable for array of strings of characters - start with empty array
-  let choiceArray = [];
+  //declare variable for array of strings of characters - start with empty array - const -> only pushing in it, not modifying
+  const choiceArray = [];
 
   //prompt the user with a question and get true/false response
   //4 prompts - loop for 4 questions
@@ -75,24 +75,25 @@ const getPasswordOptions = () => {
 };
 
 const createPassword = (passwordLength, chosenOptions) => {
-  //loop to extract 1 character from a string each time
-  let draftPassword = [];
+  //loop to extract 1 character from a string each time - const -> only pushing in it, not modifying
+  const draftPassword = [];
   //for all loops - to reach password length
   for (let i = 0; i < passwordLength; i += 1) {
-    //declare variable for the array index
-    //with ternary operator, combining both selections: ensure at least 1 from each array first, then randomly afterwards
+    //declare variable for the array index - const -> only used inside the for loop
+    //with ternary operator, combining both conditions : ensure at least 1 from each array first, then randomly afterwards
     const chosenArray =
       i < chosenOptions.length
         ? i
         : Math.floor(Math.random() * chosenOptions.length);
-    //choosing random character in string
+    //declare variables for random number - const -> only used inside the for loop
+    //using random number to choose random character in string
     const randomNumber = Math.floor(
       Math.random() * chosenOptions[chosenArray].length
     );
     //pushing character in variable
     draftPassword.push(chosenOptions[chosenArray][randomNumber]);
   }
-  //returns the newly formed collection of characters
+  //returns the newly formed collection of characters (as an array of strings of 1 character each)
   return draftPassword;
 };
 
@@ -116,9 +117,9 @@ const shufflePassword = (tempPassword) => {
       tempArray[currentIndex],
     ];
   }
-
+  //declare variable for changing the array into a string - const -> only used here, never modified
+  const tempString = tempArray.join("");
   //returns the shuffled characters as string
-  let tempString = tempArray.join("");
   return tempString;
 };
 
