@@ -17,7 +17,7 @@ For this project, the `HTML` and `CSS` structure were developed by another party
 
 ## Links to the project
 
-Link to the deployed URL:
+Link to the deployed URL: [https://am0031.github.io/password-generator/](https://am0031.github.io/password-generator/)
 
 Link to the Github Repository: [https://github.com/Am0031/password-generator](https://github.com/Am0031/password-generator)
 
