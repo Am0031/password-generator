@@ -20,6 +20,7 @@ For this project, the `HTML` and `CSS` structure were developed by another party
 Link to the deployed URL: [https://am0031.github.io/password-generator/](https://am0031.github.io/password-generator/)
 
 Link to the Github Repository: [https://github.com/Am0031/password-generator](https://github.com/Am0031/password-generator)
+
 Link to Github's pull request: [project ready for marking](https://github.com/Am0031/password-generator/pull/1)
 
 ## Screenshots of the live page
