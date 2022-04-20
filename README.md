@@ -68,7 +68,7 @@ Link to Github's pull request: [project ready for marking](https://github.com/Am
 
 ## Technologies
 
-HTML and CSS structures were already provided. The focus here was on developing the Javascript aspect of the password generator.
+HTML and CSS structures were already provided. The focus here was on developing the Javascript aspect of the password generator. For this we used arrow functions (ES6).
 
 ## Details of the steps followed
 
@@ -152,9 +152,9 @@ See below screenshots of the code for each function _(with explanatory comments 
 </details>
 
 <details>
-  <summary>Code for Function createPassword</summary>
+  <summary>Code for Function createPassword (shown before refactoring - see refactoring steps and final code below)</summary>
 
-![getPasswordLength](./assets/images/screenshot-createPassword-functionP1.png)
+![getPasswordLength](./assets/images/screenshot-createPassword-functionP1temp.png)
 ![getPasswordLength](./assets/images/screenshot-createPassword-functionP2.png)
 
 </details>
@@ -164,19 +164,136 @@ See below screenshots of the code for each function _(with explanatory comments 
 After the code was built and functional, it was important to review it for possible adjustments and improvements.
 The following aspects were worked on at this stage:
 
-### Let and Const variables
+### Assigning Let and Const variables
 
-Review of let and const allocation for function variables, where a few variables previously declared as let were adjusted to const.
+Review of let and const allocation for all function variables, and amendments were made where a few variables previously declared as let were adjusted to const.
 
 This [article](https://www.freecodecamp.org/news/var-let-and-const-whats-the-difference/) provides a thorough explanations of the different uses of var, let and const.
 
-### Ternary operator
+### Optimising loops and Use of Ternary operator
 
 Review for optimisation of the code, where loops and if/else statements can be modified for a cleaner syntax.
+As an example, let's look at the first part of the createPassword function and how it has evolved with refactoring reviews.
 
-For that purpose, the createPassword function was optimised with the use of a ternary operator.
+<details>
+<summary> 1- We started with a working code which followed our logic plan, with a rough structure of 2 `for` loops </summary>
 
-Replacing the if/else statement by the ternary operator allowed to restructure this section's code so that all three steps in this function are now all contained at the same level in the for loop and there is no unnecessary repetition of code. See below the snippet of the code _(without the comment lines for a cleaner view)_ :
+```javascript
+//1st draft code - working
+//function createPassword - 1/2 - create a temporary password based on user inputs
+const createPassword = (passwordLength, chosenOptions) => {
+  let draftPassword = [];
+
+  //loop to extract 1 character from each string
+  for (let i = 0; i < chosenOptions.length; i += 1) {
+    let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
+    draftPassword.push(chosenOptions[i][randomNumber]);
+  }
+
+  //loop to extract 1 character from randomly selected string until password length is reached
+  for (let i = chosenOptions.length; i < passwordLength; i += 1) {
+    let randomArray = Math.floor(Math.random() * chosenOptions.length);
+    let randomNumber = Math.floor(
+      Math.random() * chosenOptions[randomArray].length
+    );
+    draftPassword.push(chosenOptions[randomArray][randomNumber]);
+  }
+
+  return draftPassword;
+};
+```
+
+</details>
+
+<details>
+<summary> 2- We looked at combining the for loops, and introduced a if/else statement for that purpose </summary>
+
+```javascript
+//refactoring - 1st pass - combining code into 1 for loop
+//function createPassword - 1/2 - create a temporary password based on user inputs
+const createPassword = (passwordLength, chosenOptions) => {
+  let draftPassword = [];
+
+  //loop to extract 1 character from a string until password length is reached
+  for (let i = 0; i < passwordLength; i += 1) {
+    if (i < chosenOptions.length) {
+      let randomNumber = Math.floor(Math.random() * chosenOptions[i].length);
+      draftPassword.push(chosenOptions[i][randomNumber]);
+    } else {
+      let randomArray = Math.floor(Math.random() * chosenOptions.length);
+      let randomNumber = Math.floor(
+        Math.random() * chosenOptions[randomArray].length
+      );
+      draftPassword.push(chosenOptions[randomArray][randomNumber]);
+    }
+  }
+
+  return draftPassword;
+};
+```
+
+</details>
+
+<details>
+<summary> 3- With the new structure in place, we looked at removing repetitions in the code and leave only the essentials in the if/else statement, other lines being now at function level </summary>
+
+```javascript
+//refactoring - 2nd pass - removing code repetition in loop
+//function createPassword - 1/2 - create a temporary password based on user inputs
+const createPassword = (passwordLength, chosenOptions) => {
+  let draftPassword = [];
+  let chosenArray;
+
+  //loop to extract 1 character from a string until password length is reached
+  for (let i = 0; i < passwordLength; i += 1) {
+    if (i < chosenOptions.length) {
+      chosenArray = i;
+    } else {
+      chosenArray = Math.floor(Math.random() * chosenOptions.length);
+    }
+    let randomNumber = Math.floor(
+      Math.random() * chosenOptions[chosenArray].length
+    );
+    draftPassword.push(chosenOptions[chosenArray][randomNumber]);
+  }
+
+  return draftPassword;
+};
+```
+
+</details>
+
+<details>
+<summary> 4- With a clean if/else statement, we looked at introducing a ternary operator to optimise further this part's syntax, and we also reviewed the type for each variable. </summary>
+
+```javascript
+//refactoring - 3rd pass - adding ternary operator and checking variable type
+//function createPassword - 1/2 - create a temporary password based on user inputs
+const createPassword = (passwordLength, chosenOptions) => {
+  const draftPassword = [];
+
+  //loop to extract 1 character from a string until password length is reached
+  for (let i = 0; i < passwordLength; i += 1) {
+    const chosenArray =
+      i < chosenOptions.length
+        ? i
+        : Math.floor(Math.random() * chosenOptions.length);
+
+    const randomNumber = Math.floor(
+      Math.random() * chosenOptions[chosenArray].length
+    );
+    draftPassword.push(chosenOptions[chosenArray][randomNumber]);
+  }
+
+  return draftPassword;
+};
+```
+
+</details>
+
+This [MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is a great starting point to get some information on how a ternary operator works.
+
+Result: See below the snippet of the final code _(without the comment lines for a cleaner view)_ :
 
 ```javascript
 const createPassword = (passwordLength, chosenOptions) => {
@@ -196,7 +313,13 @@ const createPassword = (passwordLength, chosenOptions) => {
 };
 ```
 
-This [MDN page](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is a great starting point to get some information on how a ternary operator works.
+<details>
+  <summary>Complete final Code for Function createPassword (with the explanatory comments) </summary>
+
+![getPasswordLength](./assets/images/screenshot-createPassword-functionP1.png)
+![getPasswordLength](./assets/images/screenshot-createPassword-functionP2.png)
+
+</details>
 
 ## Functionalities and Limitations
 
