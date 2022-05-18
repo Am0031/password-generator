@@ -10,7 +10,7 @@ const getPasswordLength = () => {
     ""
   );
   // check if userInput is a number
-  const passwordLength = parseInt(userInput);
+  const passwordLength = parseInt(userInput, 10);
 
   // converts userInput into a number (or return NaN if not a number)
   if (!isNaN(passwordLength) && passwordLength >= 8 && passwordLength <= 128) {
@@ -22,9 +22,7 @@ const getPasswordLength = () => {
     alert(
       "You must enter a number between 8 and 128. \n\nClick OK to start again."
     );
-    //click ok on alert box to reload the page and start again
-    window.location.reload(true);
-    document.getElementById("password").reset();
+    return false;
   }
 };
 
@@ -32,7 +30,7 @@ const getPasswordLength = () => {
 const getPasswordOptions = () => {
   //step 1: getUserOption part
   //declare variables for questions and strings of characters
-  const question = [
+  const questions = [
     "Would you like to use lowercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
     "Would you like to use uppercase letters in your password? \nClick 'OK' for yes and 'Cancel' for no.",
     "Would you like to use numbers in your password? \nClick 'OK' for yes and 'Cancel' for no.",
@@ -49,10 +47,10 @@ const getPasswordOptions = () => {
 
   //prompt the user with a question and get true/false response
   //4 prompts - loop for 4 questions
-  for (let i = 0; i < question.length; i += 1) {
-    const getUserOption = confirm(question[i]); //const -> used only in this loop, not modified in the if statement
+  for (let i = 0; i < questions.length; i += 1) {
+    const userOption = confirm(questions[i]); //const -> used only in this loop, not modified in the if statement
 
-    if (getUserOption) {
+    if (userOption) {
       //if true, then the string is stored in an array
       choiceArray.push(characters[i]);
       //if false, nothing is done and the loop goes to the next index
@@ -65,9 +63,7 @@ const getPasswordOptions = () => {
     alert(
       "You must choose at least one type of characters to include in your password. \n\nClick OK to start again."
     );
-    //click ok on alert box to reload the page and start again
-    window.location.reload(true);
-    document.getElementById("password").reset();
+    return false;
   } else {
     //if array.length >=1, then return the array to be stored in a variable
     return choiceArray;
@@ -134,15 +130,23 @@ const generatePassword = () => {
   //get the password length from the user
   const passwordLength = getPasswordLength();
 
-  //get the password options from the user
-  const chosenOptions = getPasswordOptions();
+  if (passwordLength) {
+    //get the password options from the user
+    const chosenOptions = getPasswordOptions();
 
-  //create the random password
-  const tempPassword = createPassword(passwordLength, chosenOptions);
-  const randomPassword = shufflePassword(tempPassword);
+    if (chosenOptions) {
+      //create the random password
+      const tempPassword = createPassword(passwordLength, chosenOptions);
+      const randomPassword = shufflePassword(tempPassword);
 
-  //return the created password
-  return randomPassword;
+      //return the created password
+      return randomPassword;
+    } else {
+      location.reload();
+    }
+  } else {
+    location.reload();
+  }
 };
 
 // Write password to the #password input
